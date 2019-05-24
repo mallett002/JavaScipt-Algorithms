@@ -1,4 +1,4 @@
-module.exports = function updateInventory(curInv, newInv) {
+module.exports = (curInv, newInv) => {
     if (!newInv.length) return curInv;
 
     // Create inventory object
