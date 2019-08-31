@@ -48,8 +48,30 @@ module.exports = (input) => {
     // continuously call swap, incrementing params until 2nd one is the last index of the array
     // swap(0, 1, baseArr), swap(1, 2, newArray), swap(2, 3, newArray), swap(0, 1, newArray)..
     // do that and incrementing count until === numberOfPerms. Then done building up perms.
-    const baseArrIsValid = isValidPerm(baseArr);
-    console.log({baseArr});
-    console.log({baseArrIsValid});
+    let validCount = 0; // will be returned at end
+    let numberOfChecks = 0;
+    let arrayToCheck = baseArr;
+    let indicesToSwap = [0, 1];
 
+    while (numberOfChecks != numberOfPerms) {
+        numberOfChecks++;
+        // Do a check, increment numberOfChecks
+        // if arrayToCheck isValidPerm(arrayToCheck)
+        // validCount++;
+        // numberOfChecks++;
+        const isValid = isValidPerm(arrayToCheck);
+
+        if (isValid) {
+            validCount++;
+        }
+
+        // if second arg is last index, set back to 0, 1
+        if (indicesToSwap[1] === itemCount - 1) {
+            indicesToSwap = [0, 1];
+        }
+
+        arrayToCheck = swap(indicesToSwap[0], indicesToSwap[1], arrayToCheck);
+    }
+
+    return validCount;
 };
