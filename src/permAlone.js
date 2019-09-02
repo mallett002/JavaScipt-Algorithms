@@ -16,8 +16,6 @@ function getPermCount(number) {
     return count;
 }
 
-// items: a, b, c (length 3)
-// indexes: 0, 1, 2 
 function isValidPerm(arr) {
     let isValid = true;
 
@@ -29,48 +27,30 @@ function isValidPerm(arr) {
 }
 
 module.exports = (input) => {
-    // 123, 213, 231, 
-    // 321, 312, 132,
-
-
-    // abcd, bacd, bcad, bcda, cbda, cdba, cdab, dcab, dacb, dabc, ...
-    // 0,1   1,2   2,3   0,1    1,2   2,3   0,1,  1,2   2,3  0,1 ...
-
-    // Compute number of combinations
     const baseArr = input.split("");
     const itemCount = baseArr.length;
     const numberOfPerms = getPermCount(itemCount);
-
-    // keep updating arrangment of letters and incrementing a count
-    // Once count reaches numberOfPerms stop.
-    // swap function:
-    // const swappedFirstAndSecond = swap(0, 1, baseArr);
-    // continuously call swap, incrementing params until 2nd one is the last index of the array
-    // swap(0, 1, baseArr), swap(1, 2, newArray), swap(2, 3, newArray), swap(0, 1, newArray)..
-    // do that and incrementing count until === numberOfPerms. Then done building up perms.
-    let validCount = 0; // will be returned at end
-    let numberOfChecks = 0;
+    let validCount = 0;
+    
     let arrayToCheck = baseArr;
     let indicesToSwap = [0, 1];
 
-    while (numberOfChecks != numberOfPerms) {
-        numberOfChecks++;
-        // Do a check, increment numberOfChecks
-        // if arrayToCheck isValidPerm(arrayToCheck)
-        // validCount++;
-        // numberOfChecks++;
+    for (let numberOfChecks = 0; numberOfChecks <= numberOfPerms; numberOfChecks++) {
         const isValid = isValidPerm(arrayToCheck);
 
         if (isValid) {
             validCount++;
         }
 
-        // if second arg is last index, set back to 0, 1
         if (indicesToSwap[1] === itemCount - 1) {
             indicesToSwap = [0, 1];
+        } else {
+            indicesToSwap[0]++;
+            indicesToSwap[1]++; 
         }
 
         arrayToCheck = swap(indicesToSwap[0], indicesToSwap[1], arrayToCheck);
+        numberOfChecks++;
     }
 
     return validCount;
