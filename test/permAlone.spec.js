@@ -2,8 +2,8 @@ const {expect} = require('chai');
 const permAlone = require('../src/permAlone');
 
 describe('Perm Alone', () => {
-    describe('should return number of non-repeating letters', () => {
-        it('aba should be 2', () => {
+    describe('returns number of permutations with non-repeating letters', () => {
+        it('should be 2 when given aba', () => {
             // given
             const str = 'aba';
 
@@ -12,6 +12,28 @@ describe('Perm Alone', () => {
 
             // then
             expect(result).to.equal(2);
+        });
+
+        it('should be 0 when given aaa', () => {
+            // given
+            const str = 'aaa';
+
+            // when
+            const result = permAlone(str);
+
+            // then
+            expect(result).to.equal(0);
+        });
+
+        it('should be 3600 when given abcdefa', () => {
+            // given
+            const str = 'abcdefa';
+
+            // when
+            const result = permAlone(str);
+
+            // then
+            expect(result).to.equal(3600);
         });
     });
 
