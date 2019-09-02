@@ -25,6 +25,17 @@ describe('Perm Alone', () => {
             expect(result).to.equal(0);
         });
 
+        it('should be 12 when given aaabb', () => {
+            // given
+            const str = 'aaabb';
+
+            // when
+            const result = permAlone(str);
+
+            // then
+            expect(result).to.equal(12);
+        });
+
         it('should be 3600 when given abcdefa', () => {
             // given
             const str = 'abcdefa';
