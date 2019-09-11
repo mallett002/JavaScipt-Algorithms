@@ -42,6 +42,9 @@ module.exports = (input) => {
             validCount++;
         }
 
+        // TODO: fix indicesToSwap
+        // changing to 1, 2 instead of starting at 0, 1
+        // This below is right, but need to make first check at 0, 1
         if (indicesToSwap[1] === itemCount - 1) {
             indicesToSwap = [0, 1];
         } else {
@@ -49,6 +52,7 @@ module.exports = (input) => {
             indicesToSwap[1]++; 
         }
 
+        console.log({indicesToSwap});
         arrayToCheck = swap(indicesToSwap[0], indicesToSwap[1], arrayToCheck);
         numberOfChecks++;
     }
