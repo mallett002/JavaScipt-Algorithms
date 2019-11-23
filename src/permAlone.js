@@ -26,6 +26,7 @@ function isValidPerm(arr) {
     return isValid;
 }
 
+// Not getting enough validCounts for some reason...
 module.exports = (input) => {
     const baseArr = input.split("");
     const itemCount = baseArr.length;
@@ -35,26 +36,24 @@ module.exports = (input) => {
     let arrayToCheck = baseArr;
     let indicesToSwap = [0, 1];
 
-    for (let numberOfChecks = 0; numberOfChecks <= numberOfPerms; numberOfChecks++) {
+    for (let numberOfChecks = 1; numberOfChecks <= numberOfPerms; numberOfChecks++) {
         const isValid = isValidPerm(arrayToCheck);
+        console.log({arrayToCheck}, ' is valid: ', isValid);
 
         if (isValid) {
             validCount++;
         }
 
-        // TODO: fix indicesToSwap
-        // changing to 1, 2 instead of starting at 0, 1
-        // This below is right, but need to make first check at 0, 1
-        if (indicesToSwap[1] === itemCount - 1) {
+        // Keep swapping indices of array until reach number of checks
+        // If reach end of array, go back to beginning
+        if (indicesToSwap[1] === itemCount - 1 || numberOfChecks === 0) {
             indicesToSwap = [0, 1];
         } else {
             indicesToSwap[0]++;
             indicesToSwap[1]++; 
         }
 
-        console.log({indicesToSwap});
         arrayToCheck = swap(indicesToSwap[0], indicesToSwap[1], arrayToCheck);
-        numberOfChecks++;
     }
 
     return validCount;
