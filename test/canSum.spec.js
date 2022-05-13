@@ -29,12 +29,21 @@ describe('canSum function', () => {
         expect(actual).to.be.true;
     });
 
+    it('returns true with even more items', () => {
+        const target = 8;
+        const items = [2, 3, 5];
+
+        const actual = canSum(target, items);
+
+        expect(actual).to.be.true;
+    });
+
     it('handles large numbers', () => {
         const target = 300;
         const items = [7, 14];
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.true;
+        expect(actual).to.be.false;
     });
 });

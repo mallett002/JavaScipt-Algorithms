@@ -1,18 +1,21 @@
 // Can Sum: See if a target can be achieved by summing numbers:
-const canSum = (targetSum, numbers) => {
-    // Base cases
+// recursively check if subtracting gets you to 0.
+// use cache to improve performance
+const canSum = (targetSum, numbers, cache = {}) => {
+    if (targetSum in cache) return cache[targetSum];
     if (targetSum === 0) return true;
     if (targetSum < 0) return false;
 
-    // Recursively call canSum for each number
     for (let num of numbers) {
-        const remainder = targetSum - num; //
+        const remainder = targetSum - num;
 
-        if (canSum(remainder, numbers) === true) {
+        if (canSum(remainder, numbers, cache)) {
+            cache[targetSum] = true;
             return true;
         }
     }
 
+    cache[targetSum] = false;
     return false;
 };
 
