@@ -13,20 +13,17 @@ const howSum = (target, numbers, cache = {}) => {
 
     for (let n of numbers) {
         const remainder = target - n;
-        const result = howSum(remainder, numbers);
+        const result = howSum(remainder, numbers, cache);
 
         if (result) {
             result.push(n);
             cache[target] = result;
 
-            return result;
+            return cache[target];
         }
-
-        cache[target] = null;
-
-        return null;
     }
 
+    cache[target] = null;
     return null;
 };
 
