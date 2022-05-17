@@ -37,6 +37,7 @@ describe('bestSum function', () => {
         expect(actual).toStrictEqual([4, 4]);
     });
 
+    // TODO: improve performance
     test('is able to handle large inputs', () => {
         const target = 100;
         const items = [1, 2, 5, 25];
