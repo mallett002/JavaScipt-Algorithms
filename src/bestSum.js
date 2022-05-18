@@ -1,26 +1,26 @@
-const bestSum = (target, numbers) => {
-    if (numbers.includes(target)) return [target];
-    if (target === 0) return [];
-    if (target < 0) return null;
+const bestSum = (targetSum, numbers, memo = {}) => {
+    if (targetSum in memo) return memo[targetSum];
+    if (targetSum === 0) return [];
+    if (targetSum < 0) return null;
 
     let shortestCombo = null;
 
     for (let num of numbers) {
         if (num === 0) continue;
 
-        const remainder = target - num;
-        const remainderCombo = bestSum(remainder, numbers);
+        const remainder = targetSum - num;
+        const remainderCombo = bestSum(remainder, numbers, memo);
 
         if (remainderCombo) {
-            // compare remainderCombo with shortestCombo
-            remainderCombo.push(num); // add the current num in there
+            const combination = [...remainderCombo, num]; // use spread so we avoid mutating previous "remainderCombo" results
 
-            // compare
-            if (!shortestCombo || remainderCombo.length < shortestCombo.length) {
-                shortestCombo = remainderCombo;
+            if (!shortestCombo || combination.length < shortestCombo.length) { // set new shortest
+                shortestCombo = combination;
             }
         }
     }
+
+    memo[targetSum] = shortestCombo;
 
     return shortestCombo;
 };
