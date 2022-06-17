@@ -58,7 +58,7 @@ const mergeSort = (arr, start, end) => {
     }
 };
 
-const unsorted = [4, 1, 8, 3, 9, 3, 2, 6, 5];
+const unsorted = [3, 2, 1];
 
 mergeSort(unsorted, 0, unsorted.length - 1);
 
@@ -66,3 +66,38 @@ mergeSort(unsorted, 0, unsorted.length - 1);
 The big o of merge sort is the total cost of splitting (log n) plus the total cost of merging (n * log n)
 Since we only care about the greatest exponent we can say it's just n * log n
 * */
+
+// Another way
+function sort(l1, l2) {
+    const sorted = [];
+
+    while (l1.length && l2.length) {
+        sorted.push(l1[0] > l2[0] ? l2.shift() : l1.shift());
+    }
+
+    while (l1.length) {
+        sorted.push(l1.shift())
+    }
+    while (l2.length) {
+        sorted.push(l2.shift())
+    }
+
+    return sorted;
+}
+
+function mergeSort2(list) {
+    if (list.length < 2) return list;
+
+    const mid = Math.floor((list.length / 2));
+    const l1 = list.slice(0, mid);
+    const l2 = list.slice(mid, list.length);
+
+    const sortedL1 = mergeSort2(l1);
+    const sortedL2 = mergeSort2(l2);
+
+    return sort(sortedL1, sortedL2);
+}
+
+const unsorted2 = [3, 2, 1, 9, 6, 7, 10];
+const result = mergeSort2(unsorted2);
+console.log(result);
