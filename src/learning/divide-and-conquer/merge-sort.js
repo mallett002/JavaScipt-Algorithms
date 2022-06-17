@@ -1,4 +1,3 @@
-
 const merge = (arr, start, mid, end) => {
     // 1. Copy left and right half of arr into separate arrays
     let leftHalf = [];
@@ -62,3 +61,8 @@ const mergeSort = (arr, start, end) => {
 const unsorted = [4, 1, 8, 3, 9, 3, 2, 6, 5];
 
 mergeSort(unsorted, 0, unsorted.length - 1);
+
+/* =================== BigO ===================
+The big o of merge sort is the total cost of splitting (log n) plus the total cost of merging (n * log n)
+Since we only care about the greatest exponent we can say it's just n * log n
+* */
