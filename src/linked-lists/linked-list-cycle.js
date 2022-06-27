@@ -9,6 +9,8 @@ function ListNode(val) {
  * @return {boolean}
  */
 
+// Create a list of already seen
+// recursively look through list, if come across one already seen, it's true (has loop)
 const hasCycle = (head, visited = new Set()) => {
     if (!head) return false;
     if (!head.next) return false;
