@@ -19,7 +19,26 @@ const hasCycle = (head, visited = new Set()) => {
     return hasCycle(head.next, visited);
 };
 
+// This solution has O(1) complexity:
+const otherSolutionHasCycle = (head) => {
+    let fast = head,
+        slow = head;
+
+    while (fast !== null && fast.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow === fast) {
+            return true;
+        }
+    }
+
+    return false;
+};
+// ^^ Running laps. One slower than other. If the fast laps the slow, it's true (Has a loop)
+
 module.exports = {
     ListNode,
-    hasCycle
+    hasCycle,
+    otherSolutionHasCycle
 };
