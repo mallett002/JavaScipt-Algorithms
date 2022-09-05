@@ -2,16 +2,19 @@
   "name": "practice-problems",
   "version": "1.0.0",
   "description": "Practice problems",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "scripts": {
+    "test": "jest test -t 'twoSum function'",
+    "build": "tsc"
   },
   "dependencies": {
-    "jest": "28.1.0"
+    "jest": "28.1.0",
+    "typescript": "4.8.2"
   },
-  "scripts": {
-    "test": "mocha"
-  },
-  "author": "",
-  "license": "ISC"
+  "author": "William Mallett",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^28.0.8"
+  }
 }

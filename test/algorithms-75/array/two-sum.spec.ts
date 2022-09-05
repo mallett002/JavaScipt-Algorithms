@@ -1,11 +1,11 @@
-const {twoSum} = require('../../../src/algorithms-75/array/two-sum');
+import {twoSumBruteForce} from '../../../src/algorithms-75/array/two-sum';
 
 describe('twoSum function', () => {
     test('when [2,7], target = 0, returns []', () => {
         const target = 0;
         const items = [2,7];
 
-        const actual = twoSum(items, target);
+        const actual = twoSumBruteForce(items, target);
 
         expect(actual).toStrictEqual([]);
     });
@@ -14,7 +14,7 @@ describe('twoSum function', () => {
         const target = 9;
         const items = [2,7,11,15];
 
-        const actual = twoSum(items, target);
+        const actual = twoSumBruteForce(items, target);
 
         expect(actual).toStrictEqual([0, 1]);
     });
@@ -23,8 +23,7 @@ describe('twoSum function', () => {
         const target = 6;
         const items = [3, 2, 4];
 
-        const actual = twoSum(items, target);
-        console.log({actual});
+        const actual = twoSumBruteForce(items, target);
 
         expect(actual).toStrictEqual([1, 2]);
     });
@@ -33,7 +32,7 @@ describe('twoSum function', () => {
         const target = 6;
         const items = [3, 3];
 
-        const actual = twoSum(items, target);
+        const actual = twoSumBruteForce(items, target);
 
         expect(actual).toStrictEqual([0, 1]);
     });

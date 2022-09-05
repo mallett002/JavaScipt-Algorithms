@@ -1,5 +1,5 @@
 // Returns the nums in the list that add up to the target
-const twoSumBruteForce = (nums, target) => {
+export const twoSumBruteForce = (nums: number[], target: number): number[] => {
     for (let i = 0; i <= nums.length; i++) {
         for (let j = 0; j <= nums.length; j++) {
             if (i === j) {
@@ -19,8 +19,4 @@ const twoSumRecursion = (nums, target) => {
     if (target === 0) return [];
 
     // implement me :)
-};
-
-module.exports = {
-    twoSum: twoSumBruteForce
 };
