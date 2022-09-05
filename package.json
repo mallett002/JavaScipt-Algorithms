@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Practice problems",
   "scripts": {
-    "test": "jest test -t 'twoSum function'",
+    "test": "jest test",
     "build": "tsc"
   },
   "dependencies": {
