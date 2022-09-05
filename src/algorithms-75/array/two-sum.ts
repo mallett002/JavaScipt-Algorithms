@@ -20,33 +20,17 @@ export const twoSumBruteForce = (nums: number[], target: number): number[] => {
 // loop through
 // if target - val (diff) is a key, we've found our 2 values that add up to the target
 export const twoSumRecursion = (nums: number[], target: number): number[] => {
-    const valToIndex = {}; // key value pairs that add up to the target
+    const valToIndex = {};
 
     for (let i = 0; i < nums.length; i++) {
         const diff = target - nums[i];
 
-        if (diff in valToIndex) { // if (target - val) is key in valToIndex; Already seen this diff, if seen twice, we have our 2 indexes.
-            // return their 2 indexes:
-            return [valToIndex[diff], i]; // return the other's index and this ones index
+        if (diff in valToIndex) { // If the difference was a previous val in the list, found 2 numbers (diff & nums[i])
+            return [valToIndex[diff], i]; // return the indexes
         }
 
-        valToIndex[nums[i]] = i; // set currentVal: index
+        valToIndex[nums[i]] = i; // Keep track of values already seen
     }
 
     return [];
 };
-
-// if difference was a current val previously
-/*
-// {val: index}
-{
-    3: 0,
-    2: 1,
-    4: 2
-}
-
-// will return [1, 2]
-
-
-if (target - nums[i] in hash) {
-*/
