@@ -1,4 +1,4 @@
-const canConstruct = require('../src/canConstruct');
+import {canConstruct} from '../src/canConstruct';
 
 describe('canConstruct function', () => {
     test('returns true if it can construct the target', () => {
@@ -7,7 +7,7 @@ describe('canConstruct function', () => {
 
         const actual = canConstruct(target, wordBank);
 
-        expect(actual).toBeTruthy();
+        expect(actual).toBe(true);
     });
 
     test('returns true if target is an empty string', () => {
@@ -16,7 +16,7 @@ describe('canConstruct function', () => {
 
         const actual = canConstruct(target, wordBank);
 
-        expect(actual).toBeTruthy();
+        expect(actual).toBe(true);
     });
 
     test('returns false target can not be created', () => {
@@ -32,11 +32,9 @@ describe('canConstruct function', () => {
         const target = 'abcdef';
         const wordBank = ['ab', 'abc', 'cd', 'def', 'abcd'];
 
-        const start = performance.now();
         const actual = canConstruct(target, wordBank);
-        console.log(performance.now() - start);
 
-        expect(actual).toBeTruthy();
+        expect(actual).toBe(true);
     });
 
     test('handles large inputs', () => {
@@ -51,10 +49,8 @@ describe('canConstruct function', () => {
             'eeeeeee'
         ];
 
-        const start = performance.now();
         const actual = canConstruct(target, wordBank);
-        console.log(performance.now() - start);
 
-        expect(actual).toBeTruthy();
+        expect(actual).toBe(true);
     });
 });
