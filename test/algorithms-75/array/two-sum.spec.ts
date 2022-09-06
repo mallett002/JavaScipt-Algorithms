@@ -1,4 +1,4 @@
-import {twoSumBruteForce, twoSumRecursion} from '../../../src/algorithms-75/array/two-sum';
+import {twoSumBruteForce, twoSum} from '../../../src/algorithms-75/array/two-sum';
 
 describe('twoSum', () => {
     test('when [2,7], target = 0, returns []', () => {
@@ -6,7 +6,7 @@ describe('twoSum', () => {
         const items = [2,7];
 
         const actual = twoSumBruteForce(items, target);
-        const actualRecurssive = twoSumRecursion(items, target);
+        const actualRecurssive = twoSum(items, target);
 
         expect(actual).toStrictEqual([]);
         expect(actualRecurssive).toStrictEqual([]);
@@ -17,7 +17,7 @@ describe('twoSum', () => {
         const items = [2,7,11,15];
 
         const actual = twoSumBruteForce(items, target);
-        const actualRecurssive = twoSumRecursion(items, target);
+        const actualRecurssive = twoSum(items, target);
 
         expect(actual).toStrictEqual([0, 1]);
         expect(actualRecurssive).toStrictEqual([0, 1]);
@@ -28,7 +28,7 @@ describe('twoSum', () => {
         const items = [3, 2, 4];
 
         const actual = twoSumBruteForce(items, target);
-        const actualRecurssive = twoSumRecursion(items, target);
+        const actualRecurssive = twoSum(items, target);
 
         expect(actual).toStrictEqual([1, 2]);
         expect(actualRecurssive).toStrictEqual([1, 2]);
@@ -39,7 +39,7 @@ describe('twoSum', () => {
         const items = [3, 3];
 
         const actual = twoSumBruteForce(items, target);
-        const actualRecurssive = twoSumRecursion(items, target);
+        const actualRecurssive = twoSum(items, target);
 
         expect(actual).toStrictEqual([0, 1]);
         expect(actualRecurssive).toStrictEqual([0, 1]);

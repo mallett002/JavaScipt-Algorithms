@@ -19,7 +19,7 @@ export const twoSumBruteForce = (nums: number[], target: number): number[] => {
 // Keep map of {val: index}
 // loop through
 // if target - val (diff) is a key, we've found our 2 values that add up to the target
-export const twoSumRecursion = (nums: number[], target: number): number[] => {
+export const twoSum = (nums: number[], target: number): number[] => {
     const valToIndex = {};
 
     for (let i = 0; i < nums.length; i++) {
