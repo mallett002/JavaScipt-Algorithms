@@ -2,17 +2,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "ESNext",
-    "allowJs": true,
     "outDir": "built"
   },
-  "lib": [
-    "es2015"
-  ],
   "include": [
     "src/**/*",
     "test/**/*"
   ],
   "exclude": [
-    "node_modules/**/*",
+    "node_modules/**/*"
   ]
 }
