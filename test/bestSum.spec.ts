@@ -1,4 +1,4 @@
-const bestSum = require('../src/bestSum');
+import {bestSum} from '../src/bestSum';
 
 describe('bestSum function', () => {
     test('returns the target when it is in the list of numbers', () => {
