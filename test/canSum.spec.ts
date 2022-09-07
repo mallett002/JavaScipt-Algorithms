@@ -1,5 +1,4 @@
-const {expect} = require('chai');
-const canSum = require('../src/canSum');
+import {canSum} from '../src/canSum';
 
 describe('canSum function', () => {
     it('returns false when not able to sum to the target', () => {
@@ -8,7 +7,7 @@ describe('canSum function', () => {
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.false;
+        expect(actual).toBe(false);
     });
 
     it('returns true when able to sum to the target', () => {
@@ -17,7 +16,7 @@ describe('canSum function', () => {
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.true;
+        expect(actual).toBe(true);
     });
 
     it('returns true with more items', () => {
@@ -26,7 +25,7 @@ describe('canSum function', () => {
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.true;
+        expect(actual).toBe(true);
     });
 
     it('returns true with even more items', () => {
@@ -35,7 +34,7 @@ describe('canSum function', () => {
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.true;
+        expect(actual).toBe(true);
     });
 
     it('handles large numbers', () => {
@@ -44,6 +43,6 @@ describe('canSum function', () => {
 
         const actual = canSum(target, items);
 
-        expect(actual).to.be.false;
+        expect(actual).toBe(false);
     });
 });
