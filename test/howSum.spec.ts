@@ -1,4 +1,4 @@
-const howSum = require('../src/howSum');
+import {howSum} from '../src/howSum';
 
 describe('howSum function', () => {
     test('returns null when not able to sum to the target', () => {
