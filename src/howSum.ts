@@ -7,10 +7,10 @@
 type nullableNumbers = number[] | null;
 
 interface ICache {
-    number: number[]
+    number?: number[]
 }
 
-export const howSum = (target, numbers, cache = {}): nullableNumbers => {
+export const howSum = (target: number, numbers: number[], cache: ICache = {}): nullableNumbers => {
     if (target in cache) return cache[target];
     if (target === 0) return [];
     if (target < 0) return null;
@@ -19,16 +19,13 @@ export const howSum = (target, numbers, cache = {}): nullableNumbers => {
 
     for (let num of numbers) {
         const diff = target - num;
-
-        const result = howSum(diff, numbers, cache);
+        const result: nullableNumbers = howSum(diff, numbers, cache);
 
         if (result) {
-            
-           addends = [...result, num];
+            addends = [...result, num];
+            cache[target] = addends;
 
-           cache[target] = addends;
-
-           return addends;
+            return addends;
         }
     }
 
