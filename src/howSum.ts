@@ -15,21 +15,19 @@ export const howSum = (target: number, numbers: number[], cache: ICache = {}): n
     if (target === 0) return [];
     if (target < 0) return null;
 
-    let addends: nullableNumbers = null;
-
     for (let num of numbers) {
         const diff = target - num;
         const result: nullableNumbers = howSum(diff, numbers, cache);
 
         if (result) {
-            addends = [...result, num];
-            cache[target] = addends;
+            result.push(num);
+            cache[target] = result;
 
-            return addends;
+            return result;
         }
     }
 
-    cache[target] = addends;
+    cache[target] = null;
 
-    return addends;
+    return null;
 };
