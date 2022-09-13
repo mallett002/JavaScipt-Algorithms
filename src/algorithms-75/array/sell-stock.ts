@@ -13,6 +13,19 @@ export const maxProfit = (prices: number[]): number => {
     if (iOfHighest > iOfLowest) {                  // if lowest comes before highest
         return highest - lowest;
     } else {
-        // start looping
+        let greatestProfit = 0;
+
+        for (let i = 0; i < prices.length - 1; i++) {
+            const hopefulLowest = prices[i];
+            const rest = prices.slice(i + 1, prices.length);
+            const nextHighest = Math.max(...rest);
+            const diff = nextHighest - hopefulLowest;
+
+            if (diff > greatestProfit) {
+                greatestProfit = diff;
+            }
+        }
+
+        return greatestProfit;
     }
 };
