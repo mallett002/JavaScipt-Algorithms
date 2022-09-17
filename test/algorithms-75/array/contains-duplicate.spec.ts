@@ -1,23 +1,11 @@
 import {doContainsDuplicate} from '../../../src/algorithms-75/array/contains-duplicate';
 import bigDataPrices from '../../../data-sets/profits.json';
 
-const removeDupes = (items: number[]): number[] => {
-    return items.filter((curr: number, i: number) => {
-        const rest = items.slice(i + 1);
-
-        if (rest.find((item: number) => item === curr)) {
-            return false;
-        }
-
-        return true;
-    });
-};
-
 describe('contains duplicate', () => {
     // If any number is in there twice, returns false, otherwise it's true    
     test('when [1,2,3,1], returns true', () => {
         const nums = [1,2,3,1];
-
+        
         const result = doContainsDuplicate(nums);
 
         expect(result).toBe(true);
@@ -54,21 +42,10 @@ describe('contains duplicate', () => {
     });
 
     test('when given large amount of nums sans dupes, returns false', () => {
-        const pricesSansDupes = removeDupes(bigDataPrices);
+        const pricesSansDupes = [...new Set(bigDataPrices)];;
         
         const result = doContainsDuplicate(pricesSansDupes);
 
         expect(result).toBe(false);
-    });
-
-    test('playin', () => {
-        const zero = 0;
-
-        if (zero?.toString()) {
-            console.log('yes...');
-        } else {
-            console.log('falsy...');
-            
-        }
     });
 }); 

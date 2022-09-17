@@ -3,8 +3,7 @@ export const doContainsDuplicate = (nums: number[]): boolean => {
         const n = nums[i];
         const other = nums.slice(i + 1).find(same => n === same);
 
-        // if (other || other === 0) return true;
-        if (other?.toString()) return true;
+        if (other !== undefined) return true;
     }
     
     return false;
