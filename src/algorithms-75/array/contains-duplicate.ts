@@ -1,10 +1,8 @@
-export const doContainsDuplicate = (nums: number[]): boolean => {
-    for (let i = 0; i < nums.length - 1; i++) {
-        const n = nums[i];
-        const other = nums.slice(i + 1).find(same => n === same);
+// Time complexity O(n)
+// spreading an array is linear
 
-        if (other !== undefined) return true;
-    }
-    
-    return false;
+export const doContainsDuplicate = (nums: number[]): boolean => {
+    const sansDupes = [...new Set(nums)];
+
+    return sansDupes.length !== nums.length;
 };
