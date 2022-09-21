@@ -18,12 +18,32 @@ a b | XOR
 "Just like 5 + 5 = 10, reached the base (10), so the right column gets a zero"
 */
 
-export const sumTwoIntegers = (a: number, b: number) => {
-    while (b != 0) { // Once there's nothing to carry (we assign b to be the carry)
-        let carry = (a & b) << 1; // if a AND b then left shift by one
-        a = a ^ b; // a XOR b (ones digit)
-        b = carry; // carry to next bit
-    }
+/**
+<< Left shift operator
+3 << 1 = "Move 3 one bit to the left" 
+3 * (2 * 1) = 6
 
-    return a;
+3 << 2: Move 3 two bits to the left
+3 * (2 * 2) = 12
+000000000000000011 -> 000000000000001100: "12"
+*/
+
+export const sumTwoIntegers = (a: number, b: number) => {
+    if (b === 0) return a;
+    if (a === 0) return b;
+
+    const xor = a ^ b;
+    const carry = (a & b) << 1;
+
+    return sumTwoIntegers(xor, carry);
 };
+
+/*
+ 3 + 5:
+ 011 + 101
+ xor: 110; &: 001; leftshift: 010 ->
+ 110 ^ 010: 100; &: 010; leftshift: 100; ->
+ 100 ^ 100: 000; &: 100; leftshift: 1000 ->
+ 000 ^ 1000: 1000; &: 0000; leftshift: 0000 (& and leftshift result in 0, we're done): answer is what xor gave us: 1000 (8)
+*/
+
