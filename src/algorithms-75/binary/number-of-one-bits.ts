@@ -37,9 +37,16 @@ export const hammingWeight = (n: number): number => {
     return count;
 };
 
-// Other way of doing it is using strings:
 const hammingWeightString = (n: number): number => {
     const binary = n.toString(2);
 
     return binary.split('').filter((it) => it !== '0').length;
+};
+
+export const recursiveHammingWeight = (n: number): number => {
+    if (n === 0) return 0;
+
+    const res = recursiveHammingWeight(n & (n - 1));
+
+    return 1 + res;
 };
