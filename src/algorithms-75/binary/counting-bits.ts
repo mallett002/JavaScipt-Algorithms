@@ -85,8 +85,6 @@ export function fastSolution(number: number): number[] {
 
         // assign the number of ones at this number (i)
         // will be 1 + its counterpart (n - significantDigitDigit)
-        console.log({counterPart: i - significantDigit});
-        
         bits[i] = 1 + bits[i - significantDigit];
     }
 
