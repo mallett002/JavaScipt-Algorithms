@@ -74,20 +74,23 @@ offset is the most significant digit yet
 13:  1101   (16)    1 + dp[5]   ->  1 + dp[13 - 8]
 ...
 */
-export function fastSolution(n: number): number[] {
-    let numOfOnes = [0];
-    let significantDigit = 1;
+export function fastSolution(number: number): number[] {
+    let bits = [0];         // start at 0, we'll always have a 0 to start bc has 0 1's in it.
+    let significantDigit = 1;    // most significantDigit ex: 010 is 2 and 100 is 4 and 1000 is 8
 
-    for (let i = 1; i <= n; i++) {
-        // did we get to the next most significant digit? (if significantDigit * 2 === i)
-        if (significantDigit * 2 === i) {
+    for (let i = 1; i <= number; i++) {
+        if (significantDigit * 2 === i) {    // if we have reached a new significantDigit
             significantDigit = i;
         }
 
-        numOfOnes[i] = 1 + numOfOnes[i - significantDigit];     // set numOfOnes[number] to be 1 + numOfOnes[number - significantDigit]
+        // assign the number of ones at this number (i)
+        // will be 1 + its counterpart (n - significantDigitDigit)
+        console.log({counterPart: i - significantDigit});
+        
+        bits[i] = 1 + bits[i - significantDigit];
     }
 
-    return numOfOnes;
+    return bits;
 }
 
 
