@@ -55,15 +55,39 @@ Brute force solution
 */
 
 /*
-0 through 7 in binary:
-0:  000  
-1:  001  
-2:  010  
-3:  011  
-4:  100  
-5:  101  
-6:  111  
-7:  1000 
-
+Dynamic programming way to solve:
+1 + dp[n - offset]
+offset is the most significant digit yet
+0:    000   just zero           ->  0
+1:    001   (1)     1 + dp[0]   ->  1 + dp[1 - 1]
+2:    010   (2)     1 + dp[0]   ->  1 + dp[2 - 2]
+3:    011   (2)     1 + dp[1]   ->  1 + dp[3 - 2]
+4:    100   (4)     1 + dp[0]   ->  1 + dp[4 - 4]
+5:    101   (4)     1 + dp[1]   ->  1 + dp[5 - 4]
+6:    110   (4)     1 + dp[2]   ->  1 + dp[6 - 4]
+7:    111   (4)     1 + dp[3]   ->  1 + dp[7 - 4]
+8:   1000   (8)     1 + dp[0]   ->  1 + dp[8 - 8]
+9:   1001   (8)     1 + dp[1]   ->  1 + dp[9 - 8]
+10:  1010   (8)     1 + dp[2]   ->  1 + dp[10 - 8]
+11:  1011   (8)     1 + dp[3]   ->  1 + dp[11 - 8]
+12:  1100   (16)    1 + dp[4]   ->  1 + dp[12 - 8]
+13:  1101   (16)    1 + dp[5]   ->  1 + dp[13 - 8]
+...
 */
+export function fastSolution(n: number): number[] {
+    let numOfOnes = [0];
+    let significantDigit = 1;
+
+    for (let i = 1; i <= n; i++) {
+        // did we get to the next most significant digit? (if significantDigit * 2 === i)
+        if (significantDigit * 2 === i) {
+            significantDigit = i;
+        }
+
+        numOfOnes[i] = 1 + numOfOnes[i - significantDigit];     // set numOfOnes[number] to be 1 + numOfOnes[number - significantDigit]
+    }
+
+    return numOfOnes;
+}
+
 
