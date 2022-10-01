@@ -23,3 +23,41 @@ export function retrieveFewestCoins(coins: number[], amount: number): number {
 
     return minCoins;                            // return result of minCoins at the end
 }
+
+export function fastest(coins: number[], amount: number): number {
+    // build up cache
+    // let dp = [0]; // start it with 0 bc takes 0 coins to get to 0
+    let dp = {0: 0};
+
+    for (let tblVal = 1; tblVal <= amount; tblVal++) { // from 1 to amount, build up how many coins to get to that amount
+        dp[tblVal] = Infinity;      // set a default value for each item.
+
+        for (const coin of coins) { // check each coin for tblVal
+             const diff = tblVal - coin;
+
+             if (diff >= 0) { // if the diff is not negative
+                const onePlusPreviousComputation = 1 + dp[diff];
+
+                dp[tblVal] = Math.min(dp[tblVal], onePlusPreviousComputation); // set new tblVal in cache if find one with lower amnt of coins
+             }
+        }
+    }
+
+    if (dp[amount] !== Infinity) {              // if we never set the amount at 
+        return dp[amount];
+    }
+
+    return -1;
+}
+
+/*
+[1, 3, 4, 5]
+
+dp[0]    -> 0
+dp[1]    -> dp[0] + 1
+dp[2]    -> dp[1] + 1
+dp[3]    -> dp[0] + 1
+dp[4]    -> dp[0] + 1
+dp[5]    -> dp[0] + 1
+dp[6]    -> dp[5] + 1
+*/
