@@ -1,18 +1,25 @@
 // Top down approach (Depth first search)
 export function retrieveFewestCoins(coins: number[], amount: number, cache = {}): number {
-    if (amount < 0) return Infinity;
-    if (amount === 0) return 0;
     if (amount in cache) return cache[amount];
+    if (amount === 0) return 0;
 
-    let min = Infinity;
+    let minCoins = Infinity;
 
     for (const coin of coins) {
-        const leftOver = amount - coin;
-        const result = retrieveFewestCoins(coins, leftOver, cache) + 1;
+        if (coin <= amount) {
+            const result = retrieveFewestCoins(coins, amount - coin, cache);
 
-        if (result < min) min = result;
+            if (result !== -1) {
+                minCoins = Math.min(minCoins, result + 1);
+            }
+        }
     }
 
-    cache[amount] = min;
-    return cache[amount] === Infinity ? -1 : cache[amount];
+    if (minCoins === Infinity) {
+        cache[amount] = -1;
+        return -1;
+    }
+
+    cache[amount] = minCoins;
+    return minCoins;
 }
