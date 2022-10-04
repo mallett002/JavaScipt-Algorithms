@@ -1,7 +1,7 @@
 import {retrieveFewestCoins, fastest} from '../../../src/algorithms-75/dynamic/coin-change';
 
 describe('coin-change', () => {
-    // Return how many coins it takes to get to the amount
+    // Return fewest amount of coins it takes to get to the amount
     // https://leetcode.com/problems/coin-change/
     it('should return -1 when coins = [8], amount = 1', () => {
         const result = fastest([8], 1);
