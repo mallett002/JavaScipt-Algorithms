@@ -1,28 +1,27 @@
-export function lengthOfLIS(nums: number[]): number {
-    if (nums.length === 1) return 1;
 
-    if (nums.length === 2) {
-        if (nums[0] < nums[1]) {
-            return 2;
+
+
+
+export function lengthOfLIS(nums: number[]): number { // [1]
+    const cache: number[] = [];
+
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (i === nums.length - 1) cache[i] = 1;
+
+        if (nums[i] < nums[i + 1]) {
+            cache[i] = 1 + cache[i + 1];
+        } else {
+            cache[i] = 1;
         }
-
-        return 1;
     }
 
-    let shortestSequence = nums;
-
-    for (let i = 1; i < nums.length - 1; i++) {
-        const current = nums[i];
-
-        if (current >= nums[i - 1]) {
-            shortestSequence = nums.slice(i);
-        }
-        if (current >= nums[i + 1]) {
-            shortestSequence = nums.slice(i + 1);
-        }
-
-        lengthOfLIS(shortestSequence);
-    }
-
-    return shortestSequence.length;
+    return Math.max(...cache);
 } 
+
+
+/*
+[1, 2, 4, 3]
+                            Start
+                0         1       2         3
+        
+*/
