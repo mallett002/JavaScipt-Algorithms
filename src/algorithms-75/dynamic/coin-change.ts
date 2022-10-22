@@ -27,17 +27,18 @@ export function retrieveFewestCoins(coins: number[], amount: number): number {
 export function fastest(coins: number[], amount: number): number {
     const dp = [0];
 
-    for (let tableVal = 1; tableVal <= amount; tableVal++) {     // build up the tabulation dp
-        dp[tableVal] = Infinity; // Set default value as Infinity for each tableVal 
+    for (let i = 1; i <= amount; i++) {     // build up the tabulation dp
+        dp[i] = Infinity; // Set default value as Infinity for each i 
         // (Could use amount + 1 ^^ here also. Just needs to be higher than the highest possibility so we can compare against the min down below)
 
         for (const coin of coins) {
             // previous dp[n]
             // diff = (n - coin) + 1
-            const diff = tableVal - coin;
+            const diff = i - coin;
 
             if (diff >= 0) {
-                dp[tableVal] = Math.min(dp[tableVal], dp[tableVal - coin] + 1);
+                // dp[i] starts as Infinity. If already found one that reaches zero, would get reset
+                dp[i] = Math.min(dp[i], dp[diff] + 1);
             }
         }
     }
